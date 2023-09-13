@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrain Classifier</title>
+    <link rel="stylesheet" href="7.css"> <!-- Link to your CSS file -->
+    <!-- Add the TomTom Maps SDK for Web CSS file -->
+    <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps.css">
+    <style>
+        /* Center the map and set its size to 100% of available space */
+        #map {
+            width: 100%;
+            height: 100vh; /* Adjust the height as needed */
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Terrain Classifier</h1>
+    </header>
+    <main>
+        <section class="search-section">
+            <form action="/" method="post" class="location-form" onsubmit="getCoordinates(); return false;">
+                <label for="location">Enter Location:</label>
+                <input type="text" id="location" name="location" placeholder="Latitude, Longitude" required>
+                <button type="submit">Get Terrain</button>
+            </form>
+        </section>
+        <section class="map-section">
+            <div id="map"></div>
+        </section>
+        <section class="result-section">
+            <p id="coordinates"></p> <!-- Display coordinates here -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Terrain Classifier</p>
+    </footer>
+    <!-- Include the TomTom Maps SDK JavaScript file -->
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.18.0/maps/maps-web.min.js"></script>
+    <!-- Include your API key as a script -->
+    <script>
+        // Define your API key
+        var apiKey = "iBFAWVtODUYzzxMcAH2od2OD1R6M03tc";
+
+        // Initialize the map with satellite view style
+        var map = tt.map({
+            key: apiKey,
+            container: 'map',
+            center: [0, 0], // Set the initial center coordinates
+            zoom: 10, // Adjust the initial zoom level
+            style:`https://api.tomtom.com/style/1/style/*?map=2/basic_street-satellite&poi=2/poi_dynamic-satellite&key=${apiKey}`
+        });
+        
+        function getCoordinates() {
+            var locationInput = document.getElementById("location").value;
+            var geocoder = tt.services.geocode({
+                key: apiKey,
+            });
+
+            geocoder.search(locationInput)
+                .then(function(response) {
+                    if (response && response.results && response.results.length > 0) {
+                        var coordinates = response.results[0].position;
+                        document.getElementById("coordinates").textContent = `Latitude: ${coordinates.lat}, Longitude: ${coordinates.lng}`;
+                    } else {
+                        document.getElementById("coordinates").textContent = "Coordinates not found.";
+                    }
+                })
+                .catch(function(error) {
+                    console.error(error);
+                    document.getElementById("coordinates").textContent = "Error fetching coordinates.";
+                });
+        }
+    </script>
+</body>
+</html>

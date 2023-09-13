@@ -1,0 +1,84 @@
+/* Reset some default browser styles */
+html, body, div, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a background color for the whole page */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+/* Style the header section */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Style the main content section */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style the form for location input */
+.location-form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.location-form label {
+    font-weight: bold;
+}
+
+.location-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.location-form button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.location-form button:hover {
+    background-color: #555;
+}
+
+/* Style the map container */
+.map-container {
+    height: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style the result section */
+.result-section {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style the footer */
+footer {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+/* Add more custom styles for your specific needs */
+
